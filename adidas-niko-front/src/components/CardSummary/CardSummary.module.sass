@@ -1,0 +1,288 @@
+.cardSummary
+    flex: 1
+    padding: 32px 0 40px
+
+    .wrap
+        +flex(start, stretch, column)
+        gap: 28px
+
+    .message
+        font-size: $size-2
+        color: $color-black-4
+
+    .error
+        font-size: $size-2
+        color: $color-danger
+
+    .empty
+        +flex(center, center, column)
+        gap: 20px
+        padding: 64px 24px
+        border: 1px solid $color-black-1
+        border-radius: $radius-4
+        background: $color-grey-3
+
+        p
+            font-size: $size-4
+            color: $color-black-3
+
+        .shopLink
+            background: $color-black-0
+            color: $color-white
+            padding: 14px 32px
+            border-radius: $radius-full
+            font-size: $size-3
+            font-weight: 500
+            transition: $transition
+
+            &:hover
+                opacity: 0.85
+
+    .body
+        +flex(space-between, start)
+        gap: 24px
+        align-items: flex-start
+
+        +media-laptop-s
+            flex-direction: column
+
+        .leftPart
+            flex: 1
+            min-width: 0
+            border: 1px solid $color-black-1
+            border-radius: $radius-4
+            padding: 8px 24px
+            background: $color-white
+
+        .rightPart
+            +flex(start, stretch, column)
+            gap: 20px
+            flex-shrink: 0
+            width: 100%
+            max-width: 420px
+            border: 1px solid $color-black-1
+            border-radius: $radius-4
+            padding: 24px
+            background: $color-white
+            position: sticky
+            top: 16px
+
+            +media-laptop-s
+                max-width: none
+                position: static
+
+            .heading
+                font-weight: 700
+                font-size: $size-5
+                color: $color-black-0
+
+            .cartList
+                +flex(start, stretch, column)
+                gap: 16px
+
+                .position
+                    +flex(space-between, center)
+                    gap: 16px
+
+                    .left
+                        font-weight: 400
+                        font-size: $size-3
+                        color: $color-black-4
+
+                    .right
+                        font-weight: 700
+                        font-size: $size-3
+                        color: $color-black-0
+
+                        &.discount
+                            color: $color-danger
+
+            .hr
+                border: none
+                border-top: 1px solid $color-black-1
+                margin: 0
+
+            .total
+                +flex(space-between, center)
+
+                .left
+                    font-weight: 400
+                    font-size: $size-4
+
+                .right
+                    font-weight: 700
+                    font-size: $size-5
+                    color: $color-black-0
+
+            .form
+                +flex(space-between, center)
+                gap: 12px
+
+                .input
+                    position: relative
+                    flex: 1
+                    height: 48px
+
+                    input
+                        border-radius: $radius-full
+                        width: 100%
+                        height: 100%
+                        background: $color-grey-3
+                        color: $color-black-0
+                        outline: none
+                        font-size: $size-3
+                        padding: 0 16px
+
+                        &:focus ~ .placeholder,
+                        &:not(:placeholder-shown) ~ .placeholder
+                            opacity: 0
+
+                    .placeholder
+                        font-weight: 400
+                        font-size: $size-2
+                        color: $color-black-3
+                        position: absolute
+                        left: 16px
+                        top: 50%
+                        translate: 0 -50%
+                        +flex(center, center)
+                        gap: 8px
+                        pointer-events: none
+                        transition: $transition
+
+                        .icon
+                            font-size: $size-4
+
+                .apply
+                    flex-shrink: 0
+                    background: $color-black-0
+                    padding: 13px 24px
+                    border-radius: $radius-full
+                    font-weight: 500
+                    font-size: $size-3
+                    color: $color-white
+                    transition: $transition
+
+                    &:hover
+                        opacity: 0.85
+
+            .checkoutBtn
+                font-weight: 500
+                font-size: $size-3
+                color: $color-white
+                background: $color-black-0
+                padding: 18px 0
+                border-radius: $radius-full
+                +flex(center, center)
+                gap: 10px
+                width: 100%
+                transition: $transition
+
+                &:hover
+                    opacity: 0.85
+
+.card
+    display: grid
+    grid-template-columns: 100px 1fr auto
+    grid-template-rows: auto auto
+    grid-template-areas: "image info remove" "image info quantity"
+    gap: 4px 16px
+    align-items: center
+    padding: 20px 0
+
+    &:not(:last-child)
+        border-bottom: 1px solid $color-black-1
+
+    +media-mobile-l
+        grid-template-columns: 80px 1fr auto
+        gap: 8px 12px
+
+    .img
+        grid-area: image
+        width: 100px
+        height: 100px
+        border-radius: $radius-2
+        overflow: hidden
+        background: $color-grey-1
+
+        +media-mobile-l
+            width: 80px
+            height: 80px
+
+        img
+            +img-cover
+
+    .info
+        grid-area: info
+        +flex(start, stretch, column)
+        gap: 8px
+        min-width: 0
+        padding-right: 8px
+
+        .title
+            font-weight: 700
+            font-size: $size-3
+            color: $color-black-0
+            text-decoration: none
+            line-height: 1.3
+            display: -webkit-box
+            -webkit-line-clamp: 2
+            -webkit-box-orient: vertical
+            overflow: hidden
+
+            &:hover
+                opacity: 0.75
+
+        .unitPrice
+            font-weight: 400
+            font-size: $size-2
+            color: $color-black-4
+
+        .price
+            font-weight: 700
+            font-size: $size-4
+            color: $color-black-0
+
+    .remove
+        grid-area: remove
+        align-self: start
+        justify-self: end
+        color: $color-danger
+        background: none
+        font-size: $size-4
+        padding: 4px
+        transition: $transition
+
+        &:hover:not(:disabled)
+            opacity: 0.7
+
+        &:disabled
+            opacity: 0.4
+            cursor: not-allowed
+
+    .quantity
+        grid-area: quantity
+        justify-self: end
+        +flex(space-between, center)
+        padding: 8px 14px
+        gap: 16px
+        background: $color-grey-3
+        border-radius: $radius-full
+
+        .btn
+            background: none
+            +flex(center, center)
+            font-size: $size-3
+            color: $color-black-0
+            padding: 2px
+
+            &:disabled
+                opacity: 0.35
+                cursor: not-allowed
+
+        .count
+            font-weight: 500
+            font-size: $size-2
+            color: $color-black-0
+            min-width: 1.5em
+            text-align: center

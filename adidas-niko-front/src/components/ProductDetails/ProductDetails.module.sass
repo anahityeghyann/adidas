@@ -1,0 +1,187 @@
+.productDetails
+    padding: 24px 0 80px
+
+    .breadcrumbs
+        +flex(start, center)
+        flex-wrap: wrap
+        gap: 6px
+        margin-bottom: 24px
+        font-size: $size-2
+        color: $color-black-4
+
+        .breadcrumbItem
+            +flex(start, center)
+            gap: 6px
+
+        .breadcrumbSep
+            color: $color-black-3
+
+        a:hover
+            color: $color-black-0
+
+    .wrap
+        +flex(space-between, flex-start)
+        gap: 48px
+
+        .gallery
+            flex: 1 1 55%
+            min-width: 0
+            +flex(start, stretch)
+            gap: 20px
+
+            .thumbs
+                +flex(start, stretch, column)
+                gap: 14px
+                flex-shrink: 0
+
+                .thumb
+                    width: 76px
+                    aspect-ratio: 1
+                    padding: 0
+                    border: 1px solid transparent
+                    border-radius: $radius-3
+                    overflow: hidden
+                    background: $color-grey-3
+                    cursor: pointer
+                    transition: border-color $transition
+
+                    img
+                        +img-cover
+
+                .activeThumb
+                    border-color: $color-black-0
+
+            .mainImage
+                flex: 1
+                min-width: 0
+                aspect-ratio: 1
+                border-radius: $radius-5
+                overflow: hidden
+                background: $color-grey-3
+
+                img
+                    +img-cover
+
+        .rightPart
+            flex: 0 1 42%
+            min-width: 320px
+            +flex(start, stretch, column)
+            gap: 24px
+
+            .rating
+                +flex(start, center)
+                gap: 1em
+                .stars
+                    color: $color-warning
+                    font-size: $size-5
+                .ratingNumber
+                    font-size: $size-3
+                    font-weight: 400
+                    color: $color-black-0
+                    +flex()
+                    gap: 2px
+                    .max
+                        color: $color-black-4
+
+            .price
+                +flex(start, center)
+                gap: 1em
+                .newPrice
+                    font-size: $size-7
+                    font-weight: 700
+                    color: $color-black-0
+                .oldPrice
+                    font-size: $size-7
+                    font-weight: 700
+                    color: $color-black-3
+                .discount
+                    +flex(center, center)
+                    color: $color-danger
+                    background: $color-danger-bg
+                    font-weight: 500
+                    font-size: $size-3
+                    border-radius: $radius-full
+                    padding: 8px 20px
+
+            .desc
+                font-size: $size-3
+                font-weight: 400
+                color: $color-black-4
+                line-height: 1.5
+
+            .hr
+                border-color: $color-black-1
+
+            .prop
+                +flex(start, stretch, column)
+                gap: 24px
+                .propName
+                    font-size: $size-3
+                    font-weight: 400
+                    color: $color-black-4
+                .selectColor
+                    +flex(start, center)
+                    gap: 1em
+                    .color
+                        +flex(center, center)
+                        width: 36px
+                        aspect-ratio: 1 / 1
+                        border-radius: $radius-full
+                        color: $color-white
+                        text-shadow: 0 0 2px $color-black-0
+                        cursor: pointer
+                .selectSize
+                    +flex(start, center)
+                    flex-wrap: wrap
+                    gap: 1em
+                    .size
+                        font-size: $size-3
+                        font-weight: 400
+                        color: $color-black-4
+                        background: $color-grey-3
+                        padding: 12px 24px
+                        border-radius: $radius-full
+                        cursor: pointer
+                    .activeSize
+                        color: $color-white
+                        background: $color-black-0
+
+            .lastPart
+                +flex(space-between)
+                gap: 2em
+                .count
+                    +flex(space-around, center)
+                    width: 200px
+                    background: $color-black-1
+                    border-radius: $radius-full
+                    height: 48px
+                    .change
+                        +flex(center, center)
+                        font-size: $size-5
+                        color: $color-black-0
+                        background: transparent
+                    .number
+                        +flex(center, center)
+                        font-size: $size-4
+                        color: $color-black-0
+                .addToCart
+                    flex-grow: 1
+                    height: 48px
+                    font-size: $size-3
+                    color: $color-white
+                    background: $color-black-0
+                    border-radius: $radius-full
+
+    +media-laptop-s
+        .wrap
+            flex-direction: column
+            .gallery
+                width: 100%
+            .rightPart
+                min-width: 0
+                width: 100%
+
+    +media-tablet
+        .gallery
+            .thumbs .thumb
+                width: 64px

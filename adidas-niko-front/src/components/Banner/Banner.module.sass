@@ -1,0 +1,32 @@
+.banner
+    background: $color-black-0
+    width: 100%
+    color: $color-white
+    font-size: $size-2
+    line-height: 1
+    padding: 8px
+    position: relative
+    margin: 0 0 16px
+    .wrap
+        +flex(center, center)
+        height: 100%
+        .text
+            font-weight: 400
+            +flex(center, center)
+            gap: 5px
+            text-align: center
+            .link
+                font-weight: 500
+                text-decoration: underline
+                padding: 0 5px
+        .close
+            position: absolute
+            right: 0
+            top: 50%
+            translate: 0 -50%
+            cursor: pointer
+            font-size: $size-3
+
++media-mobile-s
+    .text
+        flex-direction: column

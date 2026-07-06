@@ -1,0 +1,43 @@
+.wrap
+    background: $color-grey-1
+    border-radius: $radius-6
+    +flex(start, stretch, column)
+    gap: 64px
+    padding: 72px 64px
+
+    .heading
+        font-weight: 700
+        font-size: $size-9
+        font-family: $font-2
+        text-transform: uppercase
+        text-align: center
+
+    .grid
+        display: grid
+        grid-template-columns: 3fr 2fr 3fr
+        grid-template-areas: (
+        "casual formal formal"
+        "party party gym"
+        )
+        gap: 20px
+
+        .box
+            padding: 24px 36px
+            height: 290px
+            border-radius: $radius-5
+            background: #fff no-repeat center right / auto 100%
+            font-weight: 700
+            font-size: $size-7
+            color: $color-black-0
+
+        .firstStyle
+            grid-area: casual
+
+        .secondStyle
+            grid-area: formal
+
+        .thirdStyle
+            grid-area: party
+
+        .fourthStyle
+            grid-area: gym

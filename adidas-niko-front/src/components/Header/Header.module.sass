@@ -1,0 +1,67 @@
+.header
+    height: 96px
+    background: $color-white
+
+    .wrap
+        +flex(space-between, center)
+        height: 100%
+        gap: 40px
+        .logo
+            font-weight: 700
+            font-size: $size-6
+            font-family: $font-2
+            text-transform: uppercase
+        .nav
+            font-weight: 400
+            font-size: $size-3
+            +flex
+            gap: 1.5em
+        .form
+            height: 48px
+            flex-grow: 1
+            position: relative
+            color: $color-black-3
+            max-width: 600px
+            .search
+                position: absolute
+                left: 1em
+                top: 0
+                height: 100%
+                +flex(start, center)
+                gap: 4px
+                transition: $transition
+                pointer-events: none
+                .search_icon
+                    font-size: $size-4
+                    line-height: 1
+            input
+                background: $color-grey-2
+                border-radius: $radius-full
+                width: 100%
+                height: 100%
+                font-size: $size-3
+                &:focus ~ .search
+                    opacity: 0
+                    transition: $transition
+
+        .other
+            +flex
+            gap: 16px
+            font-size: $size-5
+            .icon
+                position: relative
+                color: inherit
+                text-decoration: none
+                .badge
+                    position: absolute
+                    top: -8px
+                    right: -10px
+                    min-width: 18px
+                    height: 18px
+                    padding: 0 4px
+                    border-radius: $radius-full
+                    background: $color-black-0
+                    color: $color-white
+                    font-size: 11px
+                    font-weight: 700
+                    +flex(center, center)

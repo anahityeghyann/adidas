@@ -1,0 +1,158 @@
+.allReviews
+    padding: 0 0 80px
+    border-top: 1px solid $color-black-1
+
+    .wrap
+        +flex(start, stretch, column)
+
+        .tabs
+            +flex(space-between)
+            .tab
+                +flex(center, center)
+                flex: 1
+                background: none
+                font-weight: 400
+                font-size: $size-4
+                color: $color-black-3
+                border-bottom: 1px solid $color-black-1
+                transition: $transition
+                cursor: pointer
+                padding: 24px 0
+            .active
+                color: $color-black-0
+                font-weight: 500
+                border-bottom: 2px solid $color-black-0
+
+        .panel
+            padding-top: 36px
+
+        .detailsGrid
+            display: grid
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr))
+            gap: 32px
+
+            .detailBlock
+                +flex(start, stretch, column)
+                gap: 12px
+
+            .detailLabel
+                font-weight: 600
+                font-size: $size-3
+                color: $color-black-0
+
+            .detailText
+                font-size: $size-3
+                font-weight: 400
+                color: $color-black-4
+                line-height: 1.6
+
+            .detailList
+                +flex(start, stretch, column)
+                gap: 8px
+                font-size: $size-3
+                font-weight: 400
+                color: $color-black-4
+                line-height: 1.6
+
+        .tools
+            +flex(space-between, center)
+            flex-wrap: wrap
+            gap: 16px
+            margin-bottom: 32px
+
+            .heading
+                +flex(center, center)
+                gap: 0.35em
+
+                .title
+                    font-weight: 700
+                    font-size: $size-5
+                    color: $color-black-0
+
+                .count
+                    font-size: $size-5
+                    font-weight: 700
+                    color: $color-black-3
+
+            .btn_group
+                +flex(center, center)
+                gap: 12px
+
+                .filter
+                    +flex(center, center)
+                    width: 48px
+                    height: 48px
+                    background: $color-grey-3
+                    border-radius: $radius-full
+                    font-size: $size-4
+                    color: $color-black-0
+
+                .latest
+                    font-weight: 500
+                    font-size: $size-3
+                    background: $color-grey-3
+                    border-radius: $radius-full
+                    height: 48px
+                    padding: 0 1.5em
+                    +flex(center, center)
+                    gap: 0.75em
+
+                .write
+                    font-weight: 500
+                    font-size: $size-3
+                    background: $color-black-0
+                    color: $color-white
+                    border-radius: $radius-full
+                    height: 48px
+                    padding: 0 1.75em
+
+        .reviews
+            display: grid
+            grid-template-columns: repeat(2, 1fr)
+            gap: 20px
+            margin-bottom: 36px
+
+        .faqList
+            +flex(start, stretch, column)
+
+            .faqItem
+                border-bottom: 1px solid $color-black-1
+
+            .faqQuestion
+                width: 100%
+                +flex(space-between, center)
+                gap: 16px
+                padding: 24px 0
+                background: none
+                font-size: $size-3
+                font-weight: 500
+                color: $color-black-0
+                text-align: left
+
+                .faqIcon
+                    flex-shrink: 0
+                    font-size: $size-5
+                    transition: transform $transition
+
+            .faqQuestion.faqOpen .faqIcon
+                transform: rotate(180deg)
+
+            .faqAnswer
+                padding: 0 0 24px
+                font-size: $size-3
+                font-weight: 400
+                color: $color-black-4
+                line-height: 1.6
+
+    +media-laptop-s
+        .reviews
+            grid-template-columns: 1fr
+
+    +media-tablet
+        .tabs .tab
+            font-size: $size-2
+            padding: 16px 8px
+
+        .tools .btn_group
+            width: 100%
+            justify-content: flex-end

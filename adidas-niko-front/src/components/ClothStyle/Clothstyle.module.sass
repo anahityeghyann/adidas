@@ -1,0 +1,48 @@
+.clothStyle
+    .wrap
+        +flex(start, stretch, column)
+        gap: 32px
+        .upperPart
+            +flex(space-between, center)
+            .heading
+                font-weight: 700
+                font-size: $size-6
+            .show
+                font-weight: 400
+                font-size: $size-3
+                color: $color-black-4
+                +flex(center,center)
+                gap: 2em
+                .showing
+                    font-weight: 500
+                .sorting
+
+        .midPart
+            display: grid
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr))
+            gap: 20px
+        .hr
+            border-color: $color-black-1
+        .bottomPart
+            +flex(space-between)
+            .perAndNex
+                .changePage
+                    +flex(center,center)
+                    gap: 8px
+                    border: 1px solid $color-black-1
+                    background: $color-white
+                    border-radius: $radius-2
+                    height: 30px
+                    width: stretch
+                    padding: 8px 14px
+
+            .pages
+                +flex
+                .pageNum
+                    +flex(stretch, center)
+                    padding: 10px 15px
+                    height: 30px
+                    color: $color-black-3
+                    background: $color-white
+                
+                

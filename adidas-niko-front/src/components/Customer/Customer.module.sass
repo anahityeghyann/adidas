@@ -1,0 +1,58 @@
+.box
+    +flex(start, stretch, column)
+    border: 1px solid $color-black-1
+    border-radius: $radius-5
+    padding: 28px 32px
+    gap: 15px
+    background: $color-white
+
+    .top
+        +flex(space-between, center)
+
+    .stars
+        color: $color-warning
+        +flex
+        gap: 6px
+        font-size: $size-3
+
+    .menu
+        +flex(center, center)
+        background: none
+        font-size: $size-5
+        color: $color-black-3
+        padding: 4px
+        line-height: 1
+
+    .review
+        +flex(start, stretch, column)
+        gap: 12px
+
+        .user
+            font-weight: 700
+            font-size: $size-4
+            +flex(start, center)
+            gap: 4px
+            font-style: normal
+
+            .name
+                font-style: normal
+
+            .icon
+                color: $color-success
+                font-size: $size-4
+
+        .text
+            font-weight: 400
+            font-size: $size-3
+            color: $color-black-3
+            line-height: 1.6
+            quotes: none
+
+            &::before,
+            &::after
+                content: none
+
+        .date
+            font-weight: 400
+            font-size: $size-2
+            color: $color-black-4

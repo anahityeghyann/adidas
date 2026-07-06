@@ -1,0 +1,66 @@
+.hero
+    height: calc(100vh - 96px)
+    background: $color-grey-3
+
+    .wrap
+        height: 100%
+        +flex(center)
+        gap: 20px
+
+        .box
+            +flex(center, stretch, column)
+            width: 90%
+            max-width: 720px
+            gap: 32px
+
+            .heading
+                font-family: $font-2
+                font-weight: 700
+                font-size: $size-10
+                color: $color-black-0
+                text-transform: uppercase
+                line-height: 1
+
+            .text
+                font-weight: 400
+                font-size: $size-3
+                color: $color-black-3
+                line-height: 1.5
+
+            .button
+                background: $color-black-0
+                color: $color-white
+                text-transform: capitalize
+                font-size: $size-3
+                width: 200px
+                height: 50px
+                border-radius: $radius-full
+
+            .stats
+                +flex(space-between, start)
+
+                .item:not(.item:last-of-type)
+                    border-right: 1px solid $color-black-1
+
+                .item
+                    padding: 32px
+                    line-height: 1.5
+
+                    .number
+                        font-weight: 700
+                        font-size: $size-8
+
+                    .title
+                        font-size: $size-3
+                        font-weight: 400
+                        color: $color-black-3
+                        padding: 5px 0
+
+        .img
+            flex-grow: 1
+            position: relative
+            height: 90%
+            align-self: end
+
+            & > img
+                height: 100%
