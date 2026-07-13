@@ -4,6 +4,7 @@ import Container from "../Container/Container";
 import Button from "../Button/Button";
 import Customer from "../Customer/Customer";
 import { IoChevronDownOutline, IoFilter } from "react-icons/io5";
+import { formatReviewDate } from "../../api/products";
 
 const tabs = ["Product Details", "Rating & Reviews", "FAQ"];
 
@@ -30,48 +31,12 @@ const faqItems = [
   },
 ];
 
-const reviews = [
-  {
-    name: "Samantha D.",
-    text: '"I absolutely love this t-shirt! The design is unique and the fabric feels so comfortable. As a fellow designer, I appreciate the attention to detail. It\'s become my favorite go-to shirt."',
-    date: "August 14, 2023",
-    rating: 5,
-  },
-  {
-    name: "Alex M.",
-    text: '"The customer experience was exceptional. The shirt exceeded my expectations in terms of quality and fit. I\'ve already recommended this to several friends."',
-    date: "August 12, 2023",
-    rating: 5,
-  },
-  {
-    name: "Ethan R.",
-    text: '"This t-shirt is a must-have for anyone who appreciates good design. The minimalistic yet stylish pattern caught my eye, and the fit is perfect. I can see the designer\'s touch in every aspect."',
-    date: "August 10, 2023",
-    rating: 4.5,
-  },
-  {
-    name: "Olivia P.",
-    text: '"As a UI/UX enthusiast, I value simplicity and functionality. This t-shirt not only represents those principles but also feels great to wear. It\'s evident that the designer poured their creativity into it."',
-    date: "August 8, 2023",
-    rating: 5,
-  },
-  {
-    name: "Daniel S.",
-    text: '"The t-shirt exceeded my expectations in every way. The fabric is soft, the fit is perfect, and the color is vibrant. I\'ve received so many compliments already."',
-    date: "August 5, 2023",
-    rating: 4.5,
-  },
-  {
-    name: "Maya L.",
-    text: '"Finally found a graphic tee that doesn\'t feel cheap. Great quality print and the olive color is exactly as shown. Will definitely order more colors."',
-    date: "August 3, 2023",
-    rating: 5,
-  },
-];
-
-const AllReviews = () => {
+const AllReviews = ({ product }) => {
   const [activeTab, setActiveTab] = useState(1);
   const [openFaq, setOpenFaq] = useState(0);
+
+  const reviews = product?.reviews ?? [];
+  const reviewCount = product?.review_count ?? reviews.length;
 
   return (
     <div className={s.allReviews}>
@@ -96,9 +61,7 @@ const AllReviews = () => {
                 <div className={s.detailBlock}>
                   <h4 className={s.detailLabel}>Description</h4>
                   <p className={s.detailText}>
-                    This graphic t-shirt is perfect for any occasion. Crafted from a
-                    soft and breathable fabric, it offers superior comfort and style
-                    with a relaxed fit that works for casual and layered looks.
+                    {product?.description || "No description available."}
                   </p>
                 </div>
                 <div className={s.detailBlock}>
@@ -127,10 +90,14 @@ const AllReviews = () => {
               <div className={s.tools}>
                 <div className={s.heading}>
                   <h3 className={s.title}>All Reviews</h3>
-                  <div className={s.count}>(451)</div>
+                  <div className={s.count}>({reviewCount})</div>
                 </div>
                 <div className={s.btn_group}>
-                  <button type="button" className={s.filter} aria-label="Filter reviews">
+                  <button
+                    type="button"
+                    className={s.filter}
+                    aria-label="Filter reviews"
+                  >
                     <IoFilter />
                   </button>
                   <button type="button" className={s.latest}>
@@ -142,12 +109,21 @@ const AllReviews = () => {
                   </button>
                 </div>
               </div>
-              <div className={s.reviews}>
-                {reviews.map((review) => (
-                  <Customer key={review.name + review.date} {...review} />
-                ))}
-              </div>
-              <Button text="Load More Reviews" />
+              {reviews.length === 0 ? (
+                <p>No reviews yet for this product.</p>
+              ) : (
+                <div className={s.reviews}>
+                  {reviews.map((review) => (
+                    <Customer
+                      key={review.id}
+                      name={review.name}
+                      text={review.description}
+                      date={formatReviewDate(review.posted_date)}
+                      rating={review.rating}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
 

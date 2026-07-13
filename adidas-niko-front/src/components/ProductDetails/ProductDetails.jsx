@@ -12,6 +12,7 @@ import {
   getProduct,
   getProductImage,
   getDiscountPercent,
+  getStarParts,
 } from "../../api/products";
 import { addToCart } from "../../api/cart";
 
@@ -20,11 +21,7 @@ const breadcrumbs = [
   { label: "Shop", to: "/" },
 ];
 
-const ProductDetails = () => {
-  const { id } = useParams();
-  const [product, setProduct] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+const ProductDetails = ({ product, loading, error }) => {
   const [activeImage, setActiveImage] = useState(0);
   const [activeColor, setActiveColor] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
@@ -32,18 +29,12 @@ const ProductDetails = () => {
   const [cartMessage, setCartMessage] = useState("");
 
   useEffect(() => {
-    setLoading(true);
-    setError(null);
-    getProduct(id)
-      .then((data) => {
-        setProduct(data);
-        setActiveImage(0);
-        setActiveColor(0);
-        setActiveSize(0);
-      })
-      .catch(() => setError("Product not found."))
-      .finally(() => setLoading(false));
-  }, [id]);
+    setActiveImage(0);
+    setActiveColor(0);
+    setActiveSize(0);
+    setQuantity(1);
+    setCartMessage("");
+  }, [product?.id]);
 
   const handleAddToCart = async () => {
     if (!product) return;
@@ -94,6 +85,8 @@ const ProductDetails = () => {
   const currentPrice = product.current_price ?? product.price;
   const discount = getDiscountPercent(product.price, product.sale_price);
   const hasSale = product.sale_price != null;
+  const averageRating = product.average_rating
+  const {full, hasHalf} = getStarParts(averageRating ?? 0)
 
   return (
     <div className={s.productDetails}>
@@ -109,7 +102,7 @@ const ProductDetails = () => {
                   <span>{item.label}</span>
                 )}
               </span>
-            )
+            ),
           )}
         </nav>
 
@@ -138,19 +131,22 @@ const ProductDetails = () => {
 
           <div className={s.rightPart}>
             <Heading align="left" title={product.name} />
-            <div className={s.rating}>
-              <div className={s.stars}>
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStar />
-                <FaStarHalf />
+           {
+            averageRating != null && (
+              <div className={s.rating}>
+                <div className={s.stars}>
+                  {Array.from({length: full}).map((_,i) => (
+                    <FaStar key={i}/>
+                  ))}
+                  {hasHalf && <FaStarHalf/>}
+                </div>
+                <div className={s.ratingNumber}>
+                  <span className={s.currentRating}>{averageRating}</span>/
+                  <span className={s.max}>5</span>
+                </div>
               </div>
-              <div className={s.ratingNumber}>
-                <span className={s.currentRating}>4.5</span>/
-                <span className={s.max}>5</span>
-              </div>
-            </div>
+            )
+           }
             <div className={s.price}>
               <div className={s.newPrice}>
                 ${Number(currentPrice).toFixed(0)}
