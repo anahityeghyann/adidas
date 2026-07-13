@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 # Create your models here.
 class Color(models.Model):
@@ -50,3 +51,20 @@ class CartItem(models.Model):
     quantity = models.PositiveIntegerField(default=1)
     class Meta:
         unique_together = ("cart", "product")
+
+
+class Review(models.Model):
+    product = models.ForeignKey(Product, related_name="reviews", on_delete=models.CASCADE)
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    posted_date = models.DateTimeField(auto_now_add=True)
+    rating = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(5)],
+        help_text="Enter a rating between 1 and 5"
+    )
+
+    class Meta:
+        ordering = ["-posted_date"]
+
+    def __str__(self):
+        return f"{self.rating} review by {self.name} for {self.product.name}"

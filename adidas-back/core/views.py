@@ -25,7 +25,9 @@ class ProductListView(ListAPIView):
 
 
 class ProductDetailView(RetrieveAPIView):
-    queryset = Product.objects.filter(is_active=True)
+    queryset = Product.objects.filter(is_active=True).prefetch_related(
+        "colors", "sizes", "images", "reviews"
+    )
     serializer_class = ProductSerializer
     lookup_field = "id"
 
